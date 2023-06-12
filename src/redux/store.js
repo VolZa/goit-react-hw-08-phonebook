@@ -1,5 +1,5 @@
 //Файл оголошеня стор
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -15,18 +15,18 @@ import { authReducer } from './auth/slice';
 
 import { filterSlice } from './filter/filterSlice';
 import { contactsReducer } from './contacts/contactsSlice';
-import { tasksReducer } from './tasks/slice';
+// import { tasksReducer } from './tasks/slice';
 
 
 
 
-const middleware = [
-   ...getDefaultMiddleware({
-     serializableCheck: {
-       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-     },
-   }),
- ];
+// const middleware = [
+//    ...getDefaultMiddleware({
+//      serializableCheck: {
+//        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//      },
+//    }),
+//  ];
  
  // Persisting token field from auth slice to localstorage
  const authPersistConfig = {
@@ -38,12 +38,17 @@ const middleware = [
  export const store = configureStore({
    reducer: {
      auth: persistReducer(authPersistConfig, authReducer),
-     tasks: tasksReducer,
+    //  tasks: tasksReducer,
 
      contacts: contactsReducer,
      filter: filterSlice.reducer,
    },
-   middleware,
+   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+  //  middleware,
    devTools: process.env.NODE_ENV === 'development',
  });
  
