@@ -24,7 +24,6 @@ const ContactsBook = () => {
       <Title title="Contacts" />
       <Filter/>
       <ContactList/>      
- 
     </>
   );  
 };

@@ -25,7 +25,7 @@ export const ContactList = () => {
             return(
                <Contact key={contact.id}>
                   <span>{contact.name}: </span>
-                  <span>{contact.phone}</span>
+                  <span>{contact.number}</span>
                   <button type="button" onClick={
                      ()=>dispatch(delContact(contact.id))} >Delete</button>
                </Contact>

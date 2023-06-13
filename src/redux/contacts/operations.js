@@ -22,12 +22,12 @@ export const clearToken = () => {
 //    }
 // );
 export const fetchContacts = createAsyncThunk("contacts/fetchAll", 
-   async (_, { rejectWithValue }) => {
+   async (_, thunkAPI) => {
       try {
          const{ data } = await axios("/contacts");
          return data;
       } catch (err) {
-         return rejectWithValue(err.message);
+         return thunkAPI.rejectWithValue(err.message);
       }
    }
 );
