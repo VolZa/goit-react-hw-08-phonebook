@@ -14,8 +14,8 @@ export const ContactList = () => {
 
    useEffect(() => {
       dispatch(fetchContacts())
-   }, [dispatch])
-
+   }, [dispatch]);
+   console.log('contact-list = ', contacts.items);
    return (
       <Contacts>
          { isLoading && <h2><Loader/></h2>}

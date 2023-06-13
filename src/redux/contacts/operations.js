@@ -11,13 +11,23 @@ export const clearToken = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+// export const fetchContacts = createAsyncThunk("contacts/fetchAll", 
+//    async (_, thunkAPI) => {
+//       try {
+//          const response = await axios.get("/contacts");
+//          return response.data;
+//       } catch (err) {
+//          return thunkAPI.rejectWithValue(err.message);
+//       }
+//    }
+// );
 export const fetchContacts = createAsyncThunk("contacts/fetchAll", 
-   async (_, thunkAPI) => {
+   async (_, { rejectWithValue }) => {
       try {
-         const response = await axios.get("/contacts");
-         return response.data;
+         const{ data } = await axios("/contacts");
+         return data;
       } catch (err) {
-         return thunkAPI.rejectWithValue(err.message);
+         return rejectWithValue(err.message);
       }
    }
 );
