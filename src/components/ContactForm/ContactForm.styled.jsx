@@ -29,15 +29,19 @@ export const Field = styled(FormikField)`
 
 export const ErrorMessage = styled(FormikErrorMessage)`
   font-size: 14px;
-  color: ${p => p.theme.colors.error};
+  color: #ea1214;
 `;
+// color: ${p => p.theme.colors.error};
 
 export const Button = styled.button`
   font-size: 16px;
-  border: 1px solid ${p => p.theme.colors.black};
+  border: 1px solid #101010;
   :hover {
-    background-color: ${p => p.theme.colors.accent};
-    color: ${p => p.theme.colors.white};
+    background-color: #6085d3;
+    color: #fdfdfd;
     box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
   }
 `;
+// border: 1px solid ${p => p.theme.colors.black};
+// background-color: ${p => p.theme.colors.accent};
+//     color: ${p => p.theme.colors.white};

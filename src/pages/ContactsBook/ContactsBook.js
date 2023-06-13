@@ -4,12 +4,12 @@ import { GlobalStyle } from "./Global.styled";
 // import { ContactList } from 'components/Contact-list/ContactList';
 import { ContactList } from '../../components/Contact-list/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { Layout } from 'components/Layout/Layout';
+// import { Layout } from 'components/Layout/Layout';
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchContacts } from "redux/contacts/operations";
 // import { selectLoading } from "redux/contacts/selectors";
 
-export const ContactsBook = () => {
+const ContactsBook = () => {
   // const dispatch = useDispatch();
   // const isLoading = useSelector(selectLoading);
 
@@ -18,13 +18,15 @@ export const ContactsBook = () => {
   // }, [dispatch]);
 
   return (
-    <Layout>
+    <>
       <GlobalStyle />
       < ContactForm />
       <Title title="Contacts" />
       <Filter/>
       <ContactList/>      
  
-    </Layout>
+    </>
   );  
 };
+
+export default ContactsBook;
