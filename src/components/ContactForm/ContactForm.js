@@ -37,13 +37,18 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = ({name, number}, { resetForm}) => {
-    const contact = {
-      name,
-      phone: number,
-    }
+    // const contact = {
+    //   name,
+    //   phone: number,
+    // }
     const isNameInContacts = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
     if (isNameInContacts) return Notiflix.Notify.failure(`${name} is already in contacts!`);
-    dispatch(addContact(contact));
+    if (name && number) {
+      dispatch(addContact({ name, number }));
+    } else {
+      console.log("Error: Name and number are required");
+    }
+  
     resetForm();
   }
 
