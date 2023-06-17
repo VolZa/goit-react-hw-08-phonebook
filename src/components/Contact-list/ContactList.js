@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { delContact, fetchContacts } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { Loader } from 'components/Loader/RortationLinesLoaler';
+import { Box} from '@chakra-ui/react';
 
 export const ContactList = () => {
    const contacts = useSelector(selectShowingContacts);
@@ -12,26 +13,34 @@ export const ContactList = () => {
    const isError = useSelector(selectError);
    const dispatch = useDispatch();
 
+
    useEffect(() => {
       dispatch(fetchContacts())
    }, [dispatch]);
    console.log('contact-list = ', contacts.items);
    return (
-      <Contacts>
-         { isLoading && <h2><Loader/></h2>}
+      <Box maxW="512px" gap="12px">
+         <Contacts>
+            { isLoading && <h2><Loader/></h2>}
 
-         {isError && <h2>error</h2>}  
-         {contacts.map(contact => {
-            return(
-               <Contact key={contact.id}>
-                  <span>{contact.name}: </span>
-                  <span>{contact.number}</span>
-                  <button type="button" onClick={
-                     ()=>dispatch(delContact(contact.id))} >Delete</button>
-               </Contact>
-            );
-         })} 
+            {isError && <h2>error</h2>}  
+            {contacts.map(contact => {
+               return(
+                  <Contact key={contact.id}>
+                     <Box >
+                     {/* <Flex flex-direction='column'> Так нпрацює, працює через <br/>*/}
+                        <span>{contact.name}: </span>
+                        <br/>
+                        <span>{contact.number}</span>
+                     {/* </Flex> */}
+                     </Box>
+                     <button type="button" onClick={
+                        ()=>dispatch(delContact(contact.id))} >Delete</button>
+                  </Contact>
+               );
+            })} 
 
-      </Contacts>
+         </Contacts>
+      </Box>
    );
 };

@@ -1,19 +1,19 @@
-import { Formik } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
 import {
   FormLabel,
   Form,
-  Field,
-  ErrorMessage,
   Button,
   Title,
 } from './ContactForm.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContactsItems } from 'redux/services/selector';
+import { selectContactsItems, selectIsLoading } from 'redux/services/selector';
 import { addContact } from 'redux/contacts/operations';
 import Notiflix from "notiflix";
+import { Input } from "@chakra-ui/react";
+
 
 
 const ContactScheme = Yup.object().shape({
@@ -34,6 +34,8 @@ const ContactScheme = Yup.object().shape({
 // export const ContactForm = ({ onAdd }) => {
 export const ContactForm = () => {
   const contacts = useSelector(selectContactsItems);
+  // const isLoading = selectIsLoading; Такий запис людський але не працює, працює нелюдський - reactivskyj:
+  const  isLoading  = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const handleSubmit = ({name, number}, { resetForm}) => {
@@ -41,12 +43,14 @@ export const ContactForm = () => {
     //   name,
     //   phone: number,
     // }
+    
     const isNameInContacts = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
+    
     if (isNameInContacts) return Notiflix.Notify.failure(`${name} is already in contacts!`);
     if (name && number) {
       dispatch(addContact({ name, number }));
     } else {
-      console.log("Error: Name and number are required");
+      console.log("Error: Name and Phone number are required");
     }
   
     resetForm();
@@ -63,15 +67,29 @@ export const ContactForm = () => {
         <Form >
           <FormLabel>
             Name
-            <Field name="name" placeholder="name" />
+            <Field name="name" >
+              {({ field }) => (
+                <Input {...field} placeholder="name" size='md'
+                htmlSize={4} width='auto' variant='outline' />
+              )}
+            </Field>
             <ErrorMessage name="name" component="span" />
           </FormLabel>
           <FormLabel>
             Number
-            <Field name="number" placeholder="phone number" />
+            <Field name="number">
+            {({ field }) => (
+                <Input {...field} placeholder="phone number" size='md'
+                htmlSize={4} width='auto' variant='outline' />
+              )}
+            </Field>
             <ErrorMessage name="number" component="span" />
           </FormLabel>
-          <Button type="submit">Add contact</Button>
+          <Button type="submit"
+            disabled =  {isLoading} 
+          >
+            Add contact
+          </Button>
         </Form>
       </Formik>
     </div>

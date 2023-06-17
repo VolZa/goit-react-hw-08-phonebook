@@ -6,7 +6,7 @@ export const Contacts = styled.ul`
 
 export const Contact = styled.li`
    display: flex;
-   width: 350px;
+   // width: 350px;
    justify-content: space-between;
    margin: 0 0 8px 0;
    align-items: center;
