@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { delContact, fetchContacts } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { Loader } from 'components/Loader/RortationLinesLoaler';
-import { Box} from '@chakra-ui/react';
+import { Box, Button} from '@chakra-ui/react';
 
 export const ContactList = () => {
    const contacts = useSelector(selectShowingContacts);
@@ -34,8 +34,8 @@ export const ContactList = () => {
                         <span>{contact.number}</span>
                      {/* </Flex> */}
                      </Box>
-                     <button type="button" onClick={
-                        ()=>dispatch(delContact(contact.id))} >Delete</button>
+                     <Button type="button" onClick={
+                        ()=>dispatch(delContact(contact.id))} >Delete</Button>
                   </Contact>
                );
             })} 
