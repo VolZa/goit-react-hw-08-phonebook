@@ -1,4 +1,4 @@
-// import { Input } from './Filter.styled';
+
 import { Input } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter, setValue } from 'redux/filter/filterSlice';

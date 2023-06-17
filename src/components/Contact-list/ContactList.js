@@ -17,7 +17,7 @@ export const ContactList = () => {
    useEffect(() => {
       dispatch(fetchContacts())
    }, [dispatch]);
-   console.log('contact-list = ', contacts.items);
+
    return (
       <Box maxW="512px" gap="12px">
          <Contacts>
@@ -28,11 +28,8 @@ export const ContactList = () => {
                return(
                   <Contact key={contact.id}>
                      <Box >
-                     {/* <Flex flex-direction='column'> Так нпрацює, працює через <br/>*/}
                         <span>{contact.name}: </span>
-                        <br/>
                         <span>{contact.number}</span>
-                     {/* </Flex> */}
                      </Box>
                      <Button type="button" onClick={
                         ()=>dispatch(delContact(contact.id))} >Delete</Button>

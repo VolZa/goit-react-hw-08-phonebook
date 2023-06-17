@@ -5,14 +5,14 @@ import {
   FormLabel,
   Form,
   Button,
-  Title,
+  // Title,
 } from './ContactForm.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContactsItems, selectIsLoading } from 'redux/services/selector';
 import { addContact } from 'redux/contacts/operations';
 import Notiflix from "notiflix";
-import { Input } from "@chakra-ui/react";
+import { Input, Text } from "@chakra-ui/react";
 
 
 
@@ -58,7 +58,7 @@ export const ContactForm = () => {
 
   return (
     <div>
-      <Title>Phonebook</Title>
+      <Text fontSize='4xl'>Phonebook</Text>
       <Formik
         initialValues={{ name: '', number: '' }}
         validationSchema={ContactScheme}
