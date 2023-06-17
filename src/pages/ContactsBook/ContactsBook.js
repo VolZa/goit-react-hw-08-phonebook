@@ -4,6 +4,7 @@ import { GlobalStyle } from "./Global.styled";
 // import { ContactList } from 'components/Contact-list/ContactList';
 import { ContactList } from '../../components/Contact-list/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { Box } from "@chakra-ui/react";
 // import { Layout } from 'components/Layout/Layout';
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchContacts } from "redux/contacts/operations";
@@ -22,7 +23,10 @@ const ContactsBook = () => {
       <GlobalStyle />
       < ContactForm />
       <Title title="Contacts" />
-      <Filter/>
+      <Box mb={6}>
+        <Filter />
+      </Box>
+      
       <ContactList/>      
     </>
   );  

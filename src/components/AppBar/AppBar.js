@@ -9,13 +9,11 @@ export const AppBar = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    // <Header>
       <Box my="12px" position="relative">
         <Flex align="center" justify="space-between" gap="72px">
           <Navigation />
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </Flex>
       </Box>
-    // {/* </Header> */}
   );
 };
